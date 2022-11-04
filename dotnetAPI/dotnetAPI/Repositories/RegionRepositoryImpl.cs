@@ -1,5 +1,6 @@
 ﻿using dotnetAPI.Data;
 using dotnetAPI.model;
+using Microsoft.EntityFrameworkCore;
 
 namespace dotnetAPI.Repositories {
     public class RegionRepositoryImpl : RegionRepository {
@@ -8,8 +9,8 @@ namespace dotnetAPI.Repositories {
         public RegionRepositoryImpl(NZWalksDbContext nZWalksDbContext) {
             this.nZWalksDbContext = nZWalksDbContext;
         }
-        public IEnumerable<Region> GetAll() {
-            return nZWalksDbContext.Regions.ToList();
+        public async Task<IEnumerable<Region>> GetAll() {
+            return await nZWalksDbContext.Regions.ToListAsync();
         }
     }
 }
