@@ -3,16 +3,12 @@ using MySql.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace dotnetAPI.Migrations
-{
-    public partial class initialMigration : Migration
-    {
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
+namespace dotnetAPI.Migrations {
+    public partial class initialMigration : Migration {
+        protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.CreateTable(
                 name: "Regions",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Code = table.Column<string>(type: "longtext", nullable: false),
@@ -22,28 +18,24 @@ namespace dotnetAPI.Migrations
                     Long = table.Column<double>(type: "double", nullable: false),
                     Population = table.Column<long>(type: "bigint", nullable: false)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_Regions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "WalkDifficulty",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Code = table.Column<string>(type: "longtext", nullable: false)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_WalkDifficulty", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Walks",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "longtext", nullable: false),
@@ -51,8 +43,7 @@ namespace dotnetAPI.Migrations
                     RegionId = table.Column<int>(type: "int", nullable: false),
                     WalkDifficultyId = table.Column<int>(type: "int", nullable: false)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_Walks", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Walks_Regions_RegionId",
@@ -79,8 +70,7 @@ namespace dotnetAPI.Migrations
                 column: "WalkDifficultyId");
         }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
+        protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropTable(
                 name: "Walks");
 
