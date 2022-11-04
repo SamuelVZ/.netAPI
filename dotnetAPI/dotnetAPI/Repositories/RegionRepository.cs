@@ -2,7 +2,7 @@
 
 namespace dotnetAPI.Repositories {
     public interface RegionRepository {
-
-        IEnumerable<Region> GetAll();
+        //Task to use it as asyncronous
+        Task<IEnumerable<Region>> GetAll();
     }
 }
