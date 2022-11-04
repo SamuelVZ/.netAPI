@@ -19,6 +19,10 @@ builder.Services.AddDbContext<NZWalksDbContext>(options => {
 
 builder.Services.AddScoped<RegionRepository, RegionRepositoryImpl>();
 
+//inject Mapper
+//Assembly is all the program, so it will look for the Profiles and then use the maps for the data
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
 
 var app = builder.Build();
 
