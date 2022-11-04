@@ -16,8 +16,8 @@ namespace dotnetAPI.Controllers {
             this.mapper = mapper;
         }
         [HttpGet]
-        public IActionResult GetRegions() {
-            var regions = regionRepository.GetAll();
+        public async Task<IActionResult> GetRegions() {
+            var regions = await regionRepository.GetAll();
 
             //var regionsDto = new List<RegionDto>();
 
