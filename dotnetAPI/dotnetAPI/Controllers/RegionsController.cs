@@ -45,5 +45,18 @@ namespace dotnetAPI.Controllers {
 
 
         }
+
+        [HttpGet]
+        [Route("{id:int}")]
+        public async Task<IActionResult> GetRegionById(int id) {
+            var region = await regionRepository.GetById(id);
+
+            if (region == null) {
+                return NotFound();
+            }
+
+            var regionDto = mapper.Map<Region>(region);
+            return Ok(regionDto);
+        }
     }
 }
