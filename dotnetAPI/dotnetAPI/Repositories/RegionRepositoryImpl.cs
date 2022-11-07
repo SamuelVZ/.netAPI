@@ -12,5 +12,9 @@ namespace dotnetAPI.Repositories {
         public async Task<IEnumerable<Region>> GetAll() {
             return await nZWalksDbContext.Regions.ToListAsync();
         }
+
+        public async Task<Region> GetById(int id) {
+            return await nZWalksDbContext.Regions.FirstOrDefaultAsync(x => x.Id == id);
+        }
     }
 }
