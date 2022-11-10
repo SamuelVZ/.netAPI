@@ -9,6 +9,17 @@ namespace dotnetAPI.Repositories {
         public RegionRepositoryImpl(NZWalksDbContext nZWalksDbContext) {
             this.nZWalksDbContext = nZWalksDbContext;
         }
+
+        public async Task<Region> AddRegion(Region region) {
+
+            region.Id = null;
+            await nZWalksDbContext.Regions.AddAsync(region);
+            
+            await nZWalksDbContext.SaveChangesAsync();
+            Console.WriteLine("this is the new id: " + region.Id);
+            return region;
+        }
+
         public async Task<IEnumerable<Region>> GetAll() {
             return await nZWalksDbContext.Regions.ToListAsync();
         }
