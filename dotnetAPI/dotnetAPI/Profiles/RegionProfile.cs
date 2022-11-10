@@ -8,6 +8,7 @@ namespace dotnetAPI.Profiles {
         public RegionProfile() {
             //maps same name attributes
             CreateMap<Region, RegionDto>();
+            CreateMap<Region, AddRegion>().ReverseMap();
 
 
 
