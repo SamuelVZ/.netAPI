@@ -48,6 +48,7 @@ namespace dotnetAPI.Controllers {
 
         [HttpGet]
         [Route("{id:int}")]
+        [ActionName("GetRegionById")]
         public async Task<IActionResult> GetRegionById(int id) {
             var region = await regionRepository.GetById(id);
 
@@ -55,8 +56,29 @@ namespace dotnetAPI.Controllers {
                 return NotFound();
             }
 
-            var regionDto = mapper.Map<Region>(region);
+            var regionDto = mapper.Map<Region, RegionDto>(region);
             return Ok(regionDto);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> AddRegion(AddRegion addRegion) {
+            var region = mapper.Map<AddRegion, Region>(addRegion);
+
+             region = await regionRepository.AddRegion(region);
+
+             var regionDto = mapper.Map<Region, RegionDto>(region); 
+            
+            return CreatedAtAction(nameof(GetRegionById), new {id = regionDto.Id}, regionDto);
+            //option to introduce the Actionname but it is better to call the method with nameof(method)
+            //return CreatedAtAction("GetRegionById", new {id = regionDto.Id}, regionDto);
         }
     }
 }
+//print an object
+
+//foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(regionDto)) {
+//    string name = descriptor.Name;
+//    object value = descriptor.GetValue(regionDto);
+//    Console.WriteLine("{0}={1}", name, value);
+//}
