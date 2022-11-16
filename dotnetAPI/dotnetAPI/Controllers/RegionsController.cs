@@ -73,8 +73,30 @@ namespace dotnetAPI.Controllers {
             //option to introduce the Actionname but it is better to call the method with nameof(method)
             //return CreatedAtAction("GetRegionById", new {id = regionDto.Id}, regionDto);
         }
+
+        [HttpDelete]
+        [Route("{id:int}")]
+        public async Task<IActionResult> DeleteRegion(int id) {
+            var deleted = await regionRepository.DeleteRegion(id);
+            return deleted ? Ok() : NotFound();
+        }
+
+        [HttpPut]
+        [Route("{id:int}")]
+        public async Task<IActionResult> UpdateRegion([FromRoute] int id,[FromBody] AddRegion updateRegion) {
+
+            var region = mapper.Map<AddRegion, Region>(updateRegion);
+            region.Id= id;
+            var result = await regionRepository.UpdateRegion(region);
+
+            if(result == null)  return NotFound(); 
+
+            return Ok(result);
+        }
     }
 }
+
+
 //print an object
 
 //foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(regionDto)) {
