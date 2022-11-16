@@ -6,5 +6,7 @@ namespace dotnetAPI.Repositories {
         Task<IEnumerable<Region>> GetAll();
         Task<Region> GetById(int id);
         Task<Region> AddRegion(Region region);
+        Task<Boolean> DeleteRegion(int id);
+        Task<Region> UpdateRegion(Region region);
     }
 }
