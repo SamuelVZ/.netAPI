@@ -1,5 +1,6 @@
 using dotnetAPI.Data;
 using dotnetAPI.Repositories;
+using dotnetAPI.Service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using MySql.EntityFrameworkCore.Extensions;
@@ -13,11 +14,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//connection to the DB
 builder.Services.AddDbContext<NZWalksDbContext>(options => {
     options.UseMySQL(builder.Configuration.GetConnectionString("NZWalksDB"));
 });
 
 builder.Services.AddScoped<RegionRepository, RegionRepositoryImpl>();
+builder.Services.AddScoped<WalksRepository, WalksRepositoryImpl>();
+builder.Services.AddScoped<WalkService, WalkServiceImpl>();
 
 //inject Mapper
 //Assembly is all the program, so it will look for the Profiles and then use the maps for the data
