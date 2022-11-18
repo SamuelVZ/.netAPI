@@ -8,6 +8,17 @@ namespace dotnetAPI.Service {
         public WalkServiceImpl(WalksRepository walksRepository) {
             this.walksRepository = walksRepository;
         }
+
+        public async Task<bool> DelelteWalk(int id) {
+            var walk = await GetWalkById(id);
+            if (walk == null) { return false; }
+
+            await walksRepository.DelelteWalk(walk);
+
+            return true;
+            
+        }
+
         public async Task<IEnumerable<Walk>> GetAll() {
             return await walksRepository.GetAllWalks();
         }

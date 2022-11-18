@@ -13,8 +13,13 @@ namespace dotnetAPI.Repositories {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DelelteWalk(int id) {
-            throw new NotImplementedException();
+        public async Task<bool> DelelteWalk(Walk walk) {
+            
+
+            nZWalksDbContext.Walks.Remove(walk);
+            await nZWalksDbContext.SaveChangesAsync();
+
+            return true;
         }
 
         public async Task<IEnumerable<Walk>> GetAllWalks() {

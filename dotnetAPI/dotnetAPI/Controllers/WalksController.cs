@@ -28,5 +28,12 @@ namespace dotnetAPI.Controllers {
 
             return Ok(result);
         }
+
+        [HttpDelete]
+        [Route("{id:int}")]
+        public async Task<IActionResult> DeleteWalkById(int id) {
+            var deleted = await walkService.DelelteWalk(id);
+            return deleted ? Ok() : NotFound("Walk does not exist");
+        }
     }
 }
