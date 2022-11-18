@@ -11,5 +11,9 @@ namespace dotnetAPI.Service {
         public async Task<IEnumerable<Walk>> GetAll() {
             return await walksRepository.GetAllWalks();
         }
+
+        public async Task<Walk> GetWalkById(int id) {
+            return await walksRepository.GetWalkById(id);
+        }
     }
 }

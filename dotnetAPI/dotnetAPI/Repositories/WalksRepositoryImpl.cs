@@ -21,8 +21,8 @@ namespace dotnetAPI.Repositories {
             return await nZWalksDbContext.Walks.ToListAsync();
         }
 
-        public Task<Walk> GetWalkById(int id) {
-            throw new NotImplementedException();
+        public async Task<Walk> GetWalkById(int id) {
+            return await nZWalksDbContext.Walks.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public Task<Walk> UpdateWalk(Walk walk) {

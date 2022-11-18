@@ -18,5 +18,15 @@ namespace dotnetAPI.Controllers {
 
             return Ok(walks);
         }
+        [HttpGet]
+        [Route("{id:int}")]
+        public async Task<IActionResult> GetWalkById(int id) {
+
+            var result = await walkService.GetWalkById(id);
+
+            if(result == null) { return NotFound(); }
+
+            return Ok(result);
+        }
     }
 }
